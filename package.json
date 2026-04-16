@@ -1,0 +1,26 @@
+{
+  "name": "mines-automotive",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Preview site for the Colorado School of Mines Automotive Engineering Program. This repo is a mockup intended to hand off to Mines Communications and Marketing for eventual deployment on mines.edu via WordPress + Divi.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@iconify-json/lucide": "^1.2.102",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.7",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3"
+  }
+}
