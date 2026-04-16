@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  pageType?: 'website' | 'article';
+  heroImage?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  pageType = 'website',
+  heroImage,
+  canonicalPath
+} = Astro.props;
+
+const fullTitle = `${title} | Mines Automotive Engineering`;
+const canonical = canonicalPath
+  ? new URL(canonicalPath, Astro.site + '/mines-automotive').toString()
+  : Astro.url.toString();
+const ogImage = heroImage
+  ? new URL(heroImage, Astro.site + '/mines-automotive').toString()
+  : null;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Mockup phase: never index -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Fonts: Open Sans (Mines web brand) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/mines-automotive/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="text-(--color-body) bg-white">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <slot name="banner" />
+    <slot name="nav" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
