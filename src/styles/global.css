@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@plugin "@tailwindcss/typography";
+
+/* Respect reduced motion by default */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility baseline */
+:focus-visible {
+  outline: 3px solid var(--color-mines-red);
+  outline-offset: 2px;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-body);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-white);
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-mines-blue);
+  color: var(--color-white);
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-link:focus { top: 0; }

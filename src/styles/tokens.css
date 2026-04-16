@@ -1,0 +1,24 @@
+@theme {
+  /* Primary palette (Mines brand) */
+  --color-mines-blue: #21314D;
+  --color-mines-light-blue: #92A2BD;
+  --color-mines-red: #D2492A;
+
+  /* Secondary palette (capped at ~10% per Mines rules) */
+  --color-mines-deep-blue: #263F6A;
+  --color-mines-pale-blue: #CED5DD;
+  --color-mines-gray: #B2B4B3;
+  --color-mines-silver: #8B8D8E;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-body: #2D2D2D;
+  --color-caption: #6B7280;
+
+  /* Type scale */
+  --font-sans: "Open Sans", Arial, sans-serif;
+
+  /* Layout */
+  --container-content: 1280px;
+  --container-bleed: 1440px;
+}
