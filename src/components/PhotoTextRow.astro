@@ -1,0 +1,25 @@
+---
+export interface Props {
+  image: string;
+  alt: string;
+  heading: string;
+  reverse?: boolean;
+}
+const { image, alt, heading, reverse = false } = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+    <div class={`grid gap-10 md:grid-cols-2 md:items-center ${reverse ? 'md:[&>*:first-child]:order-2' : ''}`}>
+      <div>
+        <img src={image} alt={alt} class="w-full rounded aspect-[4/3] object-cover" loading="lazy" />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">{heading}</h2>
+        <div class="mt-4 prose prose-lg max-w-none text-(--color-body)">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

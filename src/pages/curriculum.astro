@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PhotoTextRow from '../components/PhotoTextRow.astro';
+import CTASection from '../components/CTASection.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allCourses = (await getCollection('courses')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+const previewCourses = allCourses.slice(0, 6);
+---
+
+<BaseLayout
+  title="Curriculum"
+  description="Eight new courses across three departments built around three pillars: technical depth, hands-on experience, and industry connection."
+  canonicalPath="/curriculum/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="Curriculum"
+    lead="Eight courses across three departments, organized around three pillars."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Curriculum' }]}
+  />
+
+  <PhotoTextRow
+    image={`${base}/images/fsae-tilt-test.jpg`}
+    alt="Mines Formula SAE vehicle during tilt test inspection"
+    heading="Technical depth"
+  >
+    <p>
+      The core sequence builds a vehicle engineer from the ground up. MEGN 200 introduces vehicle systems and the automotive engineering workflow. MEGN 301 covers conventional, hybrid, and electric powertrains. MEGN 417 extends that into full vehicle systems design, with MEGN 566 layering graduate-level analysis of connected and automated vehicles.
+    </p>
+    <p>
+      Every technical course is backed by open materials. Lecture notes, problem sets, and references for MEGN 200, 300, 301, and Capstone are released under CC BY 4.0 on GitHub.
+    </p>
+  </PhotoTextRow>
+
+  <PhotoTextRow
+    image={`${base}/images/shell-ecomarathon-garage.jpg`}
+    alt="Mines Shell Eco-marathon team working in the garage"
+    reverse={true}
+    heading="Hands-on experience"
+  >
+    <p>
+      Coursework is paired with lab-heavy project work from the first year forward. MEGN 200 students tear down and reassemble subsystems. MEGN 300 and 301 use the Battery Workforce Challenge and EcoCAR vehicles as live engineering platforms. Capstone teams deliver instrumented hardware to industry sponsors.
+    </p>
+    <p>
+      The four flagship competition teams, FSAE, Shell Eco-marathon, Battery Workforce Challenge, and EcoCAR, anchor the experiential side. Students build, test, and race the vehicles they analyze in class.
+    </p>
+  </PhotoTextRow>
+
+  <PhotoTextRow
+    image={`${base}/images/rc-car-workshop.jpg`}
+    alt="Students working on a small-scale vehicle in the RC workshop"
+    heading="Industry connection"
+  >
+    <p>
+      MEGN 455 and 456 use SBIR and NASA RFP formats as their semester deliverables. EBGN 599A brings technology commercialization into the automotive context. Students graduate having written the same kinds of documents they will be asked to produce on the job.
+    </p>
+    <p>
+      Program partnerships with Stellantis, NREL, and other industry and national lab collaborators keep course content current and feed directly into capstone projects, internships, and graduate placement.
+    </p>
+  </PhotoTextRow>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div class="max-w-2xl">
+          <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+          <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Course preview</h2>
+          <p class="mt-3 text-(--color-body)">A sample of the automotive track courses. See the full catalog for prerequisites, semesters, and open materials.</p>
+        </div>
+        <a href={`${base}/courses/`} class="text-sm font-bold text-(--color-mines-red) hover:underline">See all courses →</a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {previewCourses.map(course => (
+          <article class="rounded border border-(--color-mines-pale-blue) bg-white p-6">
+            <div class="text-xs font-bold uppercase tracking-wider text-(--color-mines-red)">{course.data.code}</div>
+            <h3 class="mt-2 text-lg font-bold text-(--color-mines-blue)">{course.data.name}</h3>
+            <dl class="mt-4 text-sm text-(--color-body) space-y-1">
+              <div class="flex gap-2"><dt class="font-semibold">Credits:</dt><dd>{course.data.credits}</dd></div>
+              <div class="flex gap-2"><dt class="font-semibold">Offered:</dt><dd>{course.data.semesters?.join(', ') || 'TBD'}</dd></div>
+              {course.data.instructor && (
+                <div class="flex gap-2"><dt class="font-semibold">Instructor:</dt><dd>{course.data.instructor}</dd></div>
+              )}
+            </dl>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Explore the full catalog"
+    body="Course descriptions, prerequisites, instructors, and open materials links for every automotive track course."
+    primary={{ href: `${base}/courses/`, label: 'View all courses' }}
+    secondary={{ href: `${base}/contact/`, label: 'Talk to an advisor' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
