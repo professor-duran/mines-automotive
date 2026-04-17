@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CTASection from '../components/CTASection.astro';
+import CourseCard from '../components/CourseCard.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const courses = (await getCollection('courses')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+---
+
+<BaseLayout
+  title="Courses"
+  description="The full catalog of automotive engineering track courses at Colorado School of Mines. Eight courses across mechanical engineering, economics and business, spanning undergraduate and graduate levels."
+  canonicalPath="/courses/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="Course catalog"
+    lead="Eight courses across three departments. Click any course for prerequisites, semesters offered, and open materials."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Courses' }]}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-12 md:py-16">
+      <div class="max-w-3xl text-lg text-(--color-body)">
+        <p>
+          The automotive engineering track spans introductory vehicle systems through graduate-level connected and automated vehicles. Every technical course is backed by openly licensed materials released under CC BY 4.0 on GitHub.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {courses.map(course => <CourseCard course={course} />)}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Questions about course sequencing?"
+    body="Talk to the program advisors about prerequisites, cross-listings, and how these courses fit into your degree plan."
+    primary={{ href: `${base}/contact/`, label: 'Contact an advisor' }}
+    secondary={{ href: `${base}/curriculum/`, label: 'Back to curriculum' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

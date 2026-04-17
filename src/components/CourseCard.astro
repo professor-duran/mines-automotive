@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+export interface Props {
+  course: CollectionEntry<'courses'>;
+}
+const { course } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const slug = course.id.replace(/\.md$/, '');
+---
+
+<a
+  href={`${base}/courses/${slug}/`}
+  class="block rounded border border-(--color-mines-pale-blue) bg-white p-6 transition-colors hover:border-(--color-mines-red)"
+>
+  <div class="flex items-baseline justify-between">
+    <span class="text-xs font-bold uppercase tracking-wider text-(--color-mines-red)">{course.data.code}</span>
+    <span class="text-xs text-(--color-caption)">{course.data.credits} cr.</span>
+  </div>
+  <h3 class="mt-2 text-lg font-bold text-(--color-mines-blue)">{course.data.name}</h3>
+  {course.data.semesters.length > 0 && (
+    <p class="mt-2 text-xs text-(--color-caption)">Offered: {course.data.semesters.join(', ')}</p>
+  )}
+  {course.data.developedBy && (
+    <p class="mt-1 text-xs text-(--color-caption)">Developed by: {course.data.developedBy}</p>
+  )}
+</a>
