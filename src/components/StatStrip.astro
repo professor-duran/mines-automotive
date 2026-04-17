@@ -1,0 +1,26 @@
+---
+import type { Stat } from '../data/stats';
+export interface Props {
+  stats: Stat[];
+  title?: string;
+}
+const { stats, title } = Astro.props;
+---
+
+<section class="bg-white border-y border-(--color-mines-pale-blue)">
+  <div class="mx-auto max-w-(--container-content) px-6 py-12 md:py-16">
+    {title && <h2 class="sr-only">{title}</h2>}
+    <dl class={`grid gap-8 ${stats.length === 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'}`}>
+      {stats.map(stat => (
+        <div class="text-center md:text-left">
+          <dt class="sr-only">{stat.label}</dt>
+          <dd>
+            <span class="block text-4xl md:text-5xl font-bold text-(--color-mines-red)">{stat.value}</span>
+            <span class="mt-2 block text-sm uppercase tracking-wider font-semibold text-(--color-mines-blue)">{stat.label}</span>
+            {stat.detail && <span class="mt-1 block text-xs text-(--color-caption)">{stat.detail}</span>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
