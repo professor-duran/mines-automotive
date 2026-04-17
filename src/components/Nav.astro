@@ -1,0 +1,117 @@
+---
+export interface Props {
+  currentPath?: string;
+}
+const { currentPath = '' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/curriculum/`, label: 'Curriculum' },
+  { href: `${base}/teams/`, label: 'Teams' },
+  { href: `${base}/partners/`, label: 'Partners' },
+  { href: `${base}/contact/`, label: 'Contact' }
+];
+
+const isActive = (href: string) => {
+  if (href === `${base}/`) return currentPath === `${base}/`;
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-40 border-b border-(--color-mines-pale-blue) bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+  <nav class="mx-auto flex max-w-(--container-bleed) items-center justify-between px-6 py-4" aria-label="Primary">
+    <a href={`${base}/`} class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-mines-red)">
+      <span class="block h-8 w-8 rounded-sm bg-(--color-mines-blue)" aria-hidden="true"></span>
+      <span class="font-bold text-(--color-mines-blue) leading-tight">
+        <span class="block text-sm uppercase tracking-wider">Colorado School of Mines</span>
+        <span class="block text-lg">Automotive Engineering</span>
+      </span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8" role="list">
+      {links.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`text-sm font-semibold transition-colors hover:text-(--color-mines-red) ${isActive(link.href) ? 'text-(--color-mines-red) underline underline-offset-8' : 'text-(--color-mines-blue)'}`}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button
+      id="mobile-nav-toggle"
+      class="lg:hidden rounded p-2 text-(--color-mines-blue) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-mines-red)"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open navigation menu"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </nav>
+
+  <div
+    id="mobile-nav"
+    class="hidden lg:hidden border-t border-(--color-mines-pale-blue) bg-white px-6 py-4"
+  >
+    <ul class="flex flex-col gap-4" role="list">
+      {links.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`block text-base font-semibold ${isActive(link.href) ? 'text-(--color-mines-red)' : 'text-(--color-mines-blue)'}`}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const panel = document.getElementById('mobile-nav');
+  if (toggle && panel) {
+    toggle.addEventListener('click', () => {
+      const isOpen = panel.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      if (isOpen) {
+        const first = panel.querySelector('a');
+        if (first instanceof HTMLElement) first.focus();
+      }
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) {
+        panel.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+      if (e.key === 'Tab' && !panel.classList.contains('hidden')) {
+        const focusables = Array.from(panel.querySelectorAll<HTMLElement>('a, button'));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    });
+  }
+</script>
