@@ -24,6 +24,10 @@ npm run dev              # http://localhost:4321/mines-automotive/
 - `npm run export:bundle`, zipped handoff bundle
 - `npm run test:a11y`, axe + pa11y + Lighthouse
 
+## Why there's a sitemap if the site is noindex
+
+The `sitemap-index.xml` is generated as a reference artifact for Mines Communications and Marketing during handoff. Search engines cannot see it because `robots.txt Disallow: /` blocks the whole preview URL.
+
 ## License
 
 Code and config: MIT. Content: All rights reserved pending Mines Communications approval.
