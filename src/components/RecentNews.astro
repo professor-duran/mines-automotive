@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from './NewsCard.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('news'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+---
+
+<section class="bg-white">
+  <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-24">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div class="max-w-2xl">
+        <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Recent news</h2>
+      </div>
+      <a href={`${base}/news/`} class="text-sm font-bold text-(--color-mines-red) hover:underline">All news →</a>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {posts.map(post => <NewsCard post={post} />)}
+    </div>
+  </div>
+</section>
