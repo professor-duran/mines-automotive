@@ -2,33 +2,72 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import PageHeader from '../components/PageHeader.astro';
+import Hero from '../components/Hero.astro';
+import StatStrip from '../components/StatStrip.astro';
+import PillarGrid from '../components/PillarGrid.astro';
+import FeaturedTeams from '../components/FeaturedTeams.astro';
+import RecentNews from '../components/RecentNews.astro';
+import PartnerStrip from '../components/PartnerStrip.astro';
 import CTASection from '../components/CTASection.astro';
+import { programStats } from '../data/stats';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const pillars = [
+  {
+    icon: 'lucide:book-open',
+    title: 'Technical depth',
+    description: 'Eight courses across three departments covering powertrains, batteries, controls, autonomy, and vehicle systems design.'
+  },
+  {
+    icon: 'lucide:wrench',
+    title: 'Hands-on experience',
+    description: 'Four flagship competition teams plus industry-sponsored capstone projects. Every student builds, tests, and competes.'
+  },
+  {
+    icon: 'lucide:users',
+    title: 'Industry connection',
+    description: 'Direct partnerships with OEMs, Tier 1 suppliers, and DOE national laboratories. Graduates enter the workforce with real-world references.'
+  }
+];
 ---
 
 <BaseLayout
   title="Home"
-  description="The Mines Automotive Engineering Program at the Colorado School of Mines."
+  description="The Mines Automotive Engineering Program at the Colorado School of Mines. 252 declared students, 8 new courses, 4 flagship competition teams."
+  heroImage="/images/fsae-track.jpg"
   canonicalPath="/"
 >
   <Nav slot="nav" currentPath={Astro.url.pathname} />
 
-  <PageHeader
-    title="Mines Automotive Engineering"
-    lead="Hands-on, industry-connected automotive engineering at the Colorado School of Mines."
+  <Hero
+    headline="Building the next generation of automotive engineers."
+    subhead="A hands-on, industry-connected automotive engineering program at the Colorado School of Mines."
+    image={`${base}/images/fsae-track.jpg`}
+    imageAlt="Mines Formula SAE car on competition track"
+    primary={{ href: `${base}/curriculum/`, label: 'View the curriculum' }}
+    secondary={{ href: `${base}/teams/`, label: 'Meet the teams' }}
   />
 
-  <section class="mx-auto max-w-(--container-content) px-6 py-20">
-    <p class="text-lg">Homepage content coming in Phase 3.</p>
-  </section>
+  <StatStrip stats={programStats} title="Program at a glance" />
+
+  <PillarGrid
+    heading="How the program works"
+    lead="Three pillars connect classroom instruction to real-world engineering."
+    pillars={pillars}
+  />
+
+  <FeaturedTeams />
+
+  <RecentNews />
+
+  <PartnerStrip />
 
   <CTASection
-    headline="Declare the automotive track"
-    body="Start planning your coursework and find your team."
-    primary={{ href: `${base}/curriculum/`, label: 'View curriculum' }}
-    secondary={{ href: `${base}/contact/`, label: 'Talk to us' }}
+    headline="Ready to build cars?"
+    body="Talk to us about declaring the track, joining a team, or partnering as an industry sponsor."
+    primary={{ href: `${base}/contact/`, label: 'Get in touch' }}
+    secondary={{ href: `${base}/curriculum/`, label: 'View curriculum' }}
   />
 
   <Footer slot="footer" />
