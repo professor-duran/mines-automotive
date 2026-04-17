@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+import NewsCard from '../../components/NewsCard.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const posts = (await getCollection('news'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout
+  title="News"
+  description="Announcements, program milestones, team results, and student spotlights from the Mines Automotive Engineering Program."
+  canonicalPath="/news/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="News"
+    lead="Program announcements, competition team results, research milestones, and student spotlights."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'News' }]}
+  />
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      {posts.length > 0 ? (
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map(post => <NewsCard post={post} />)}
+        </div>
+      ) : (
+        <p class="text-(--color-body)">No news posts yet. Check back soon.</p>
+      )}
+    </div>
+  </section>
+
+  <CTASection
+    headline="Stay in touch"
+    body="Want updates on program milestones, team results, and recruiting windows? Reach out to get on the list."
+    primary={{ href: `${base}/contact/`, label: 'Contact the program' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
