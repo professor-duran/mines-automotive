@@ -1,0 +1,46 @@
+---
+export interface Props {
+  headline: string;
+  subhead: string;
+  image: string;
+  imageAlt: string;
+  primary: { href: string; label: string };
+  secondary?: { href: string; label: string };
+}
+const { headline, subhead, image, imageAlt, primary, secondary } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-(--color-mines-blue)">
+  <img
+    src={image}
+    alt={imageAlt}
+    class="absolute inset-0 h-full w-full object-cover opacity-50"
+    loading="eager"
+    decoding="async"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-(--color-mines-blue)/85 to-(--color-mines-blue)/60" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-(--container-bleed) px-6 py-24 md:py-36">
+    <div class="max-w-3xl pl-5">
+      <span class="absolute left-6 top-24 block h-16 w-1 bg-(--color-mines-red) md:top-36" aria-hidden="true"></span>
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white">{headline}</h1>
+      <p class="mt-6 text-lg md:text-xl text-(--color-mines-light-blue)">{subhead}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={primary.href}
+          class="inline-flex items-center rounded bg-(--color-mines-red) px-6 py-3 text-base font-bold text-white hover:bg-(--color-mines-red)/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {primary.label}
+        </a>
+        {secondary && (
+          <a
+            href={secondary.href}
+            class="inline-flex items-center rounded border border-white px-6 py-3 text-base font-bold text-white hover:bg-white hover:text-(--color-mines-blue) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            {secondary.label}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
