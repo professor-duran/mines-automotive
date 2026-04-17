@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import StatStrip from '../components/StatStrip.astro';
+import PillarGrid from '../components/PillarGrid.astro';
+import CTASection from '../components/CTASection.astro';
+import { programStats, secondaryStats } from '../data/stats';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const pillars = [
+  {
+    icon: 'lucide:book-open',
+    title: 'Technical depth',
+    description: 'Eight new courses across three departments cover powertrains, batteries, controls, autonomy, and vehicle systems design.'
+  },
+  {
+    icon: 'lucide:wrench',
+    title: 'Hands-on experience',
+    description: 'Four flagship competition teams, industry-sponsored capstones, and lab-heavy coursework. Every student builds, tests, and competes.'
+  },
+  {
+    icon: 'lucide:users',
+    title: 'Industry connection',
+    description: 'Direct partnerships with OEMs, Tier 1 suppliers, and DOE national laboratories translate classroom work into career pathways.'
+  }
+];
+---
+
+<BaseLayout
+  title="About"
+  description="How the Mines Automotive Engineering Program grew from two faculty in 2022 to 252 declared students, eight new courses, and four flagship competition teams."
+  canonicalPath="/about/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="About the program"
+    lead="A hands-on, industry-connected automotive engineering track built at the Colorado School of Mines."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'About' }]}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Origin</h2>
+        <div class="mt-6 space-y-5 text-lg text-(--color-body)">
+          <p>
+            The Mines Automotive Engineering Program launched in 2022 as a collaboration between two faculty in Mechanical Engineering, Adam Duran and Polina Brodsky. There was no new department, no new faculty lines, and no dedicated budget. What existed was a clear thesis: Mines graduates should be able to walk onto an OEM or Tier 1 engineering floor and contribute on day one.
+          </p>
+          <p>
+            The program started by stabilizing existing vehicle and powertrain courses, then added MEGN 200, 301, 300, 455, 456, 566, and EBGN 599A in sequence. Each course was reviewed on its own merits. By the time the track was evaluated institutionally, the portfolio already had enrollment data to back it up.
+          </p>
+          <p>
+            Three years in, the program has 252 declared undergraduates, the second-largest elective track in Mechanical Engineering, and a partnership footprint that includes Stellantis, NREL, and the DOE Battery Workforce Challenge. The operating model is still two core faculty. A third line is planned for the next growth phase.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StatStrip stats={programStats} title="Program at a glance" />
+  <StatStrip stats={secondaryStats} title="Structure" />
+
+  <PillarGrid
+    heading="Three pillars"
+    lead="The curriculum, competition teams, and industry pipeline are designed as one system."
+    pillars={pillars}
+  />
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Our approach</h2>
+        <div class="mt-6 space-y-5 text-lg text-(--color-body)">
+          <p>
+            Competition teams are the front door. A first-year student who joins FSAE, Shell Eco-marathon, the Battery Workforce Challenge, or EcoCAR meets every track instructor within a semester and sees the kind of work upper-division automotive students do.
+          </p>
+          <p>
+            Industry partnerships fund work that students would do anyway. The BWC vehicle, for example, is the integration platform for coursework in MEGN 300, MEGN 417, and MEGN 466. Sponsor dollars flow into the curriculum, not around it.
+          </p>
+          <p>
+            Course materials are released openly. Lectures, problem sets, and references for MEGN 200, 300, 301, and Capstone are published on GitHub under CC BY 4.0 so other faculty can adopt, adapt, and improve them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Want to help build what comes next?"
+    body="Talk to us about joining a team, declaring the track, or partnering as an industry sponsor."
+    primary={{ href: `${base}/contact/`, label: 'Get in touch' }}
+    secondary={{ href: `${base}/curriculum/`, label: 'View curriculum' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
