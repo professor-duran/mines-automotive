@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CTASection from '../components/CTASection.astro';
+import { Icon } from 'astro-icon/components';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tiers = [
+  {
+    tier: 'Founding partners',
+    description: 'Organizations that helped launch the program. Multi-year commitments to curriculum, student teams, and capstone sponsorship.',
+    slots: 4
+  },
+  {
+    tier: 'Corporate partners',
+    description: 'OEMs and Tier 1 suppliers supporting coursework, capstones, and student competition teams.',
+    slots: 6
+  },
+  {
+    tier: 'Program supporters',
+    description: 'Companies and foundations providing in-kind support, equipment, or targeted project funding.',
+    slots: 6
+  },
+  {
+    tier: 'National laboratory partners',
+    description: 'DOE national labs collaborating on research, workforce development, and student project platforms.',
+    slots: 3
+  }
+];
+
+const benefits = [
+  {
+    icon: 'lucide:briefcase',
+    title: 'Talent pipeline',
+    description: 'Direct access to 252 declared automotive-track students through capstone sponsorship, recruiting events, and team advising.'
+  },
+  {
+    icon: 'lucide:flask-conical',
+    title: 'Applied research',
+    description: 'Faculty and graduate student collaborations on powertrains, batteries, controls, and connected and automated vehicle systems.'
+  },
+  {
+    icon: 'lucide:wrench',
+    title: 'Sponsored projects',
+    description: 'Industry-defined problems become capstone deliverables and competition team platforms. Sponsor dollars fund work that students would do anyway.'
+  }
+];
+---
+
+<BaseLayout
+  title="Partners"
+  description="Industry, foundation, and national laboratory partners supporting the Mines Automotive Engineering Program."
+  canonicalPath="/partners/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="Partners"
+    lead="Industry, foundation, and national laboratory partners keep the program current and fund student work."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Partners' }]}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20 space-y-16">
+      {tiers.map(tier => (
+        <div>
+          <div class="max-w-3xl">
+            <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+            <h2 class="text-2xl md:text-3xl font-bold text-(--color-mines-blue)">{tier.tier}</h2>
+            <p class="mt-3 text-(--color-body)">{tier.description}</p>
+          </div>
+          <div class="mt-8 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+            {Array.from({ length: tier.slots }).map(() => (
+              <div class="aspect-[3/2] rounded border border-dashed border-(--color-mines-pale-blue) bg-(--color-mines-pale-blue)/20 flex items-center justify-center">
+                <span class="text-xs font-semibold uppercase tracking-wider text-(--color-caption)">Logo TBD</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Why partner with us</h2>
+        <p class="mt-4 text-lg text-(--color-body)">Three practical ways industry, foundation, and lab partners engage with the program.</p>
+      </div>
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {benefits.map(b => (
+          <div class="rounded border border-(--color-mines-pale-blue) bg-white p-8">
+            <Icon name={b.icon} class="h-10 w-10 text-(--color-mines-red)" aria-hidden="true" />
+            <h3 class="mt-4 text-xl font-bold text-(--color-mines-blue)">{b.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-(--color-body)">{b.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Partner with the program"
+    body="Talk to us about capstone sponsorship, team support, applied research, or recruiting."
+    primary={{ href: `${base}/contact/`, label: 'Start a conversation' }}
+    secondary={{ href: `${base}/about/`, label: 'About the program' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
