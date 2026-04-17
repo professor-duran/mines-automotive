@@ -1,0 +1,30 @@
+---
+export interface Props {
+  title: string;
+  lead?: string;
+  breadcrumb?: { label: string; href?: string }[];
+}
+const { title, lead, breadcrumb = [] } = Astro.props;
+---
+
+<section class="bg-(--color-mines-pale-blue)/40 border-b border-(--color-mines-pale-blue)">
+  <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+    {breadcrumb.length > 0 && (
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold uppercase tracking-wider text-(--color-caption)">
+        <ol class="flex flex-wrap items-center gap-2" role="list">
+          {breadcrumb.map((item, i) => (
+            <li class="flex items-center gap-2">
+              {item.href ? <a href={item.href} class="hover:text-(--color-mines-red)">{item.label}</a> : <span>{item.label}</span>}
+              {i < breadcrumb.length - 1 && <span aria-hidden="true">/</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+    <div class="relative pl-5">
+      <span class="absolute left-0 top-2 block h-10 w-1 bg-(--color-mines-red)" aria-hidden="true"></span>
+      <h1 class="text-3xl md:text-5xl font-bold text-(--color-mines-blue)">{title}</h1>
+      {lead && <p class="mt-4 max-w-3xl text-lg text-(--color-body)">{lead}</p>}
+    </div>
+  </div>
+</section>
