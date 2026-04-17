@@ -5,8 +5,17 @@ description: DOE-sponsored challenge to redesign battery packs for real-world el
 role: Battery system design, build, and integration with industry partner vehicles
 established: "Mines joined BWC as a founding-cohort university in 2023."
 advisors: ["Adam W. Duran", "Polina Brodsky"]
-thumbnail: /images/fsae-track.jpg
+heroImage: /images/bwc-team-stellantis.jpg
+heroAlt: Mines Battery Workforce Challenge team with Stellantis partners
+thumbnail: /images/bwc-team-stellantis.jpg
 order: 3
+gallery:
+  - src: /images/bwc-year-1-awards.jpg
+    alt: Mines BWC team receiving a Year 1 competition award
+    caption: Year 1 awards
+  - src: /images/bwc-van.jpg
+    alt: BWC team van used for testing and travel between competition sites
+    caption: Team van at a testing event
 sponsors: []
 recentResults: []
 externalLinks: {}

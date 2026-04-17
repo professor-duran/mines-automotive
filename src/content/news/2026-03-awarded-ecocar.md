@@ -3,6 +3,7 @@ title: "Mines awarded EcoCAR Innovation Challenge for 2026 to 2030 cycle"
 description: "The Mines Automotive Program joins the Stellantis track with approximately $520,000 in program funding over four years."
 pubDate: 2026-03-01
 tags: [ecocar, awards, research]
+heroImage: /images/ecocar-jeep-reveal.jpg
 category: news
 ---
 

@@ -5,7 +5,9 @@ description: DOE and Stellantis-sponsored multi-year competition to redesign a p
 role: Vehicle-level hybrid powertrain and controls design, integration, and competition
 established: "Mines awarded EcoCAR in Spring 2026 for the 2026 to 2030 program cycle, Stellantis track."
 advisors: ["Adam W. Duran", "Polina Brodsky"]
-thumbnail: /images/fsae-track.jpg
+heroImage: /images/ecocar-jeep-reveal.jpg
+heroAlt: EcoCAR Jeep reveal event platform
+thumbnail: /images/ecocar-jeep-reveal.jpg
 order: 4
 sponsors: []
 recentResults: []
