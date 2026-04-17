@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { assetUrl } from '../lib/asset-url';
 export interface Props {
   post: CollectionEntry<'news'>;
 }
@@ -12,7 +13,7 @@ const date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', 
 <article class="flex flex-col rounded border border-(--color-mines-pale-blue) bg-white overflow-hidden transition-colors hover:border-(--color-mines-red)">
   {post.data.heroImage && (
     <div class="aspect-[16/9] w-full overflow-hidden">
-      <img src={post.data.heroImage} alt="" class="h-full w-full object-cover" loading="lazy" />
+      <img src={assetUrl(post.data.heroImage)} alt="" class="h-full w-full object-cover" loading="lazy" />
     </div>
   )}
   <div class="flex flex-1 flex-col p-6">

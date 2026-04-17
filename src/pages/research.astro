@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import PageHeader from '../components/PageHeader.astro';
 import CTASection from '../components/CTASection.astro';
 import NewsCard from '../components/NewsCard.astro';
+import { assetUrl } from '../lib/asset-url';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -39,16 +40,22 @@ const focusAreas = [
 
 const capstoneHighlights = [
   {
-    title: 'Student Capstone Project',
-    summary: 'Coming soon. Senior design project details will be posted as sponsored capstone teams deliver their final reports.'
+    title: 'Hot-swappable battery pack',
+    image: '/images/capstone-hot-swap.jpg',
+    alt: 'Mines capstone students working on a hot-swappable battery pack prototype',
+    summary: 'Senior design team delivered a hot-swap battery prototype for a sponsor vehicle, targeting rapid field replacement for fleet applications.'
   },
   {
-    title: 'Student Capstone Project',
-    summary: 'Coming soon. Industry-sponsored team project summaries will appear here each spring.'
+    title: '24 Hours of Lemons',
+    image: '/images/capstone-lemons.jpg',
+    alt: 'Mines 24 Hours of Lemons endurance race car built by capstone students',
+    summary: 'Endurance race build: capstone students designed, prepped, and raced an economy-class car through the 24 Hours of Lemons endurance series.'
   },
   {
-    title: 'Student Capstone Project',
-    summary: 'Coming soon. National lab collaboration capstone highlights will be featured in this slot.'
+    title: 'National lab collaboration',
+    image: null,
+    alt: '',
+    summary: 'Coming soon. Ongoing national lab collaboration capstone highlights will be featured in this slot.'
   }
 ];
 ---
@@ -119,10 +126,16 @@ const capstoneHighlights = [
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         {capstoneHighlights.map(item => (
-          <article class="rounded border border-(--color-mines-pale-blue) bg-white p-6">
-            <div class="aspect-[16/9] w-full rounded bg-(--color-mines-pale-blue)" aria-hidden="true"></div>
-            <h3 class="mt-4 text-lg font-bold text-(--color-mines-blue)">{item.title}</h3>
-            <p class="mt-2 text-sm text-(--color-body)">{item.summary}</p>
+          <article class="rounded border border-(--color-mines-pale-blue) bg-white overflow-hidden">
+            {item.image ? (
+              <img src={assetUrl(item.image)} alt={item.alt} class="aspect-[16/9] w-full object-cover" loading="lazy" />
+            ) : (
+              <div class="aspect-[16/9] w-full bg-(--color-mines-pale-blue)" aria-hidden="true"></div>
+            )}
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-(--color-mines-blue)">{item.title}</h3>
+              <p class="mt-2 text-sm text-(--color-body)">{item.summary}</p>
+            </div>
           </article>
         ))}
       </div>

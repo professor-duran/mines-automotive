@@ -19,12 +19,16 @@ const {
 } = Astro.props;
 
 const fullTitle = `${title} | Mines Automotive Engineering`;
-const canonical = canonicalPath
-  ? new URL(canonicalPath, Astro.site + '/mines-automotive').toString()
-  : Astro.url.toString();
-const ogImage = heroImage
-  ? new URL(heroImage, Astro.site + '/mines-automotive').toString()
-  : null;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteOrigin = (Astro.site ?? new URL('https://professor-duran.github.io')).origin;
+// canonicalPath is relative to the program site root. Normalize leading slash, then
+// prepend the full origin + base so the URL is absolute and includes the /mines-automotive/ prefix.
+const normalizePath = (p: string) => {
+  const clean = p.startsWith('/') ? p : `/${p}`;
+  return `${siteOrigin}${base}${clean}`;
+};
+const canonical = canonicalPath ? normalizePath(canonicalPath) : Astro.url.toString();
+const ogImage = heroImage ? normalizePath(heroImage) : null;
 ---
 
 <!DOCTYPE html>

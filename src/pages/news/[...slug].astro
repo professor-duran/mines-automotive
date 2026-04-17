@@ -5,6 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import CTASection from '../../components/CTASection.astro';
+import { assetUrl } from '../../lib/asset-url';
 
 export async function getStaticPaths() {
   const posts = await getCollection('news', p => !p.data.draft);
@@ -74,7 +75,7 @@ const categoryLabel: Record<string, string> = {
 
   {post.data.heroImage && (
     <div class="mx-auto max-w-(--container-bleed) px-6 mt-8">
-      <img src={post.data.heroImage} alt={post.data.title} class="w-full aspect-[21/9] object-cover rounded" loading="lazy" />
+      <img src={assetUrl(post.data.heroImage)} alt={post.data.title} class="w-full aspect-[21/9] object-cover rounded" loading="lazy" />
     </div>
   )}
 

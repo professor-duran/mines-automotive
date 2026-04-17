@@ -1,5 +1,6 @@
 ---
 import type { FacultyMember } from '../data/faculty';
+import { assetUrl } from '../lib/asset-url';
 export interface Props {
   person: FacultyMember;
 }
@@ -9,7 +10,7 @@ const { person } = Astro.props;
 <article class="flex flex-col md:flex-row gap-6 rounded border border-(--color-mines-pale-blue) bg-white p-6">
   {person.headshot && (
     <img
-      src={person.headshot}
+      src={assetUrl(person.headshot)}
       alt={`Headshot of ${person.name}`}
       class="h-32 w-32 md:h-40 md:w-40 rounded object-cover flex-shrink-0"
       loading="lazy"
