@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const paths = [
+  {
+    title: 'Independent study',
+    body: 'One-credit research projects with a faculty advisor. Work on a focused problem over a semester, build lab and simulation skills, and produce a deliverable you can point to in interviews and graduate applications.',
+    cta: { href: `${base}/faculty/`, label: 'Contact a faculty advisor' }
+  },
+  {
+    title: 'Team involvement',
+    body: 'Join one of the four competition teams: Formula SAE, Shell Eco-marathon, Battery Workforce Challenge, or EcoCAR. Teams recruit every fall and spring, with roles spanning mechanical, electrical, controls, and project management.',
+    cta: { href: `${base}/teams/`, label: 'Explore the teams' }
+  },
+  {
+    title: 'Graduate research',
+    body: 'MS and PhD tracks for students pursuing deeper work in powertrains, batteries, autonomy, or vehicle systems. Funded positions tied to sponsored projects and national lab collaborations open each year.',
+    cta: { href: `${base}/contact/`, label: 'Ask about graduate openings' }
+  }
+];
+
+const spotlights = [
+  { name: 'Coming soon', role: 'Student spotlight' },
+  { name: 'Coming soon', role: 'Student spotlight' },
+  { name: 'Coming soon', role: 'Student spotlight' }
+];
+---
+
+<BaseLayout
+  title="For students"
+  description="Three paths into automotive engineering at Mines: independent study, competition team involvement, and graduate research."
+  canonicalPath="/students/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="For students"
+    lead="Three ways to plug into automotive engineering at Mines, from a first-semester first-year to a graduate student."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Students' }]}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-12 md:py-16">
+      <div class="max-w-3xl text-lg text-(--color-body)">
+        <p>
+          The automotive track is built to give every interested student a clear way in, whether you want to touch a vehicle your first week on campus or go deep on a research question over several years. Pick the path that fits where you are now. You can layer them over time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="grid gap-6 md:grid-cols-3">
+        {paths.map(path => (
+          <article class="flex flex-col rounded border border-(--color-mines-pale-blue) bg-white p-6">
+            <h2 class="text-xl font-bold text-(--color-mines-blue)">{path.title}</h2>
+            <p class="mt-3 text-sm text-(--color-body) flex-1">{path.body}</p>
+            <a href={path.cta.href} class="mt-4 text-sm font-bold text-(--color-mines-red) hover:underline">{path.cta.label} →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-2xl">
+        <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Student spotlights</h2>
+        <p class="mt-3 text-(--color-body)">Profiles of automotive-track students will be posted here as the program grows.</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {spotlights.map(s => (
+          <article class="rounded border border-(--color-mines-pale-blue) bg-white p-6">
+            <div class="aspect-square w-full rounded bg-(--color-mines-pale-blue)" aria-hidden="true"></div>
+            <h3 class="mt-4 text-lg font-bold text-(--color-mines-blue)">{s.name}</h3>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-(--color-caption)">{s.role}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Where our graduates go</h2>
+        <p class="mt-4 text-lg text-(--color-body)">
+          Mines automotive-track graduates land at OEMs, Tier 1 suppliers, national labs, automotive startups, and top graduate programs. The combination of technical depth, hands-on competition team experience, and industry-style deliverables translates directly into early career impact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to get involved?"
+    body="Reach out to program faculty about independent study, team recruiting windows, or graduate research openings."
+    primary={{ href: `${base}/contact/`, label: 'Contact the program' }}
+    secondary={{ href: `${base}/curriculum/`, label: 'See the curriculum' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
