@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Preview / mockup site only. Final deploy will live on mines.edu.
+# Contact: adam.duran@mines.edu
