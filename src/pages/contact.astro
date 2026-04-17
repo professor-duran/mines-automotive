@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CTASection from '../components/CTASection.astro';
+import { Icon } from 'astro-icon/components';
+import { faculty } from '../data/faculty';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const programEmail = 'automotive@mines.edu';
+
+const paths = [
+  {
+    icon: 'lucide:graduation-cap',
+    title: 'Prospective student',
+    description: 'Considering Mines for undergraduate or graduate study? Ask about the automotive track, courses, and how to get involved from day one.',
+    email: programEmail,
+    subject: 'Prospective student inquiry',
+    cta: 'Email the program'
+  },
+  {
+    icon: 'lucide:user-check',
+    title: 'Current Mines student',
+    description: 'Already at Mines? Reach out about declaring the track, joining a competition team, capstone advising, or independent study.',
+    email: programEmail,
+    subject: 'Current student inquiry',
+    cta: 'Email the program'
+  },
+  {
+    icon: 'lucide:handshake',
+    title: 'Industry partner',
+    description: 'Interested in capstone sponsorship, competition team support, recruiting, or applied research collaboration? Let us know what you are working on.',
+    email: programEmail,
+    subject: 'Industry partnership inquiry',
+    cta: 'Start a partnership conversation'
+  }
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="How to reach the Mines Automotive Engineering Program. Email addresses for prospective students, current students, and industry partners."
+  canonicalPath="/contact/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title="Contact"
+    lead="Three paths to reach the program. All inquiries go to faculty directly."
+    breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Contact' }]}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Program contacts</h2>
+        <p class="mt-4 text-lg text-(--color-body)">
+          The program does not run a ticket system or intake form. Emails go to the two core faculty and are read.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded border border-(--color-mines-pale-blue) bg-white p-6">
+          <div class="text-xs font-bold uppercase tracking-wider text-(--color-mines-red)">General inquiries</div>
+          <h3 class="mt-2 text-lg font-bold text-(--color-mines-blue)">Program email</h3>
+          <p class="mt-2 text-sm text-(--color-body)">Default destination for all program inquiries.</p>
+          <a href={`mailto:${programEmail}`} class="mt-4 inline-block text-sm font-bold text-(--color-mines-red) hover:underline">{programEmail}</a>
+        </div>
+        {faculty.map(f => (
+          <div class="rounded border border-(--color-mines-pale-blue) bg-white p-6">
+            <div class="text-xs font-bold uppercase tracking-wider text-(--color-mines-red)">Faculty</div>
+            <h3 class="mt-2 text-lg font-bold text-(--color-mines-blue)">{f.name}</h3>
+            <p class="mt-2 text-sm text-(--color-caption)">{f.title}</p>
+            <a href={`mailto:${f.email}`} class="mt-4 inline-block text-sm font-bold text-(--color-mines-red) hover:underline">{f.email}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-(--color-mines-pale-blue)/40">
+    <div class="mx-auto max-w-(--container-content) px-6 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <span class="block h-1 w-16 bg-(--color-mines-red) mb-4" aria-hidden="true"></span>
+        <h2 class="text-3xl md:text-4xl font-bold text-(--color-mines-blue)">Get involved</h2>
+        <p class="mt-4 text-lg text-(--color-body)">Three paths depending on who you are. Pick the one that fits.</p>
+      </div>
+
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {paths.map(p => (
+          <div class="flex flex-col rounded border border-(--color-mines-pale-blue) bg-white p-8">
+            <Icon name={p.icon} class="h-10 w-10 text-(--color-mines-red)" aria-hidden="true" />
+            <h3 class="mt-4 text-xl font-bold text-(--color-mines-blue)">{p.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-(--color-body) flex-1">{p.description}</p>
+            <a
+              href={`mailto:${p.email}?subject=${encodeURIComponent(p.subject)}`}
+              class="mt-6 inline-flex items-center rounded bg-(--color-mines-red) px-4 py-2 text-sm font-bold text-white hover:bg-(--color-mines-red)/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-mines-blue)"
+            >
+              {p.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Prefer to see the program first?"
+    body="Browse the curriculum, competition teams, and recent news before reaching out."
+    primary={{ href: `${base}/curriculum/`, label: 'View curriculum' }}
+    secondary={{ href: `${base}/teams/`, label: 'Meet the teams' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
