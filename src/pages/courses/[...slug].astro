@@ -1,0 +1,106 @@
+---
+import { getCollection, type CollectionEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  return courses.map(course => ({
+    params: { slug: course.id.replace(/\.md$/, '') },
+    props: { course }
+  }));
+}
+
+interface Props { course: CollectionEntry<'courses'> }
+const { course } = Astro.props;
+const { Content } = await render(course);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const {
+  code,
+  name,
+  credits,
+  semesters,
+  prerequisites,
+  instructor,
+  developedBy,
+  openMaterialsUrl
+} = course.data;
+
+const description = `${code}: ${name}. ${credits} credits.`;
+---
+
+<BaseLayout
+  title={`${code}: ${name}`}
+  description={description}
+  canonicalPath={`/courses/${course.id.replace(/\.md$/, '')}/`}
+  pageType="article"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title={`${code}: ${name}`}
+    lead={`${credits} credits. ${semesters.length > 0 ? `Offered ${semesters.join(', ')}.` : ''}`}
+    breadcrumb={[
+      { label: 'Home', href: `${base}/` },
+      { label: 'Courses', href: `${base}/courses/` },
+      { label: code }
+    ]}
+  />
+
+  <section class="mx-auto max-w-3xl px-6 py-12">
+    <dl class="grid gap-4 sm:grid-cols-2 text-sm">
+      <div>
+        <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Credits</dt>
+        <dd class="mt-1 text-(--color-body)">{credits}</dd>
+      </div>
+      {semesters.length > 0 && (
+        <div>
+          <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Semesters</dt>
+          <dd class="mt-1 text-(--color-body)">{semesters.join(', ')}</dd>
+        </div>
+      )}
+      {prerequisites.length > 0 && (
+        <div>
+          <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Prerequisites</dt>
+          <dd class="mt-1 text-(--color-body)">{prerequisites.join(', ')}</dd>
+        </div>
+      )}
+      {instructor && (
+        <div>
+          <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Instructor</dt>
+          <dd class="mt-1 text-(--color-body)">{instructor}</dd>
+        </div>
+      )}
+      {developedBy && (
+        <div>
+          <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Developed by</dt>
+          <dd class="mt-1 text-(--color-body)">{developedBy}</dd>
+        </div>
+      )}
+      {openMaterialsUrl && (
+        <div>
+          <dt class="font-semibold uppercase tracking-wider text-(--color-caption) text-xs">Open materials</dt>
+          <dd class="mt-1">
+            <a href={openMaterialsUrl} class="text-(--color-mines-red) underline hover:no-underline" rel="noopener">{openMaterialsUrl}</a>
+          </dd>
+        </div>
+      )}
+    </dl>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 prose prose-lg prose-headings:font-bold prose-headings:text-(--color-mines-blue) prose-a:text-(--color-mines-red)">
+    <Content />
+  </section>
+
+  <CTASection
+    headline="Explore the full curriculum"
+    primary={{ href: `${base}/courses/`, label: 'All courses' }}
+    secondary={{ href: `${base}/curriculum/`, label: 'Curriculum overview' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
