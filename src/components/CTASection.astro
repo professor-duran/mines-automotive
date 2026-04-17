@@ -1,0 +1,32 @@
+---
+export interface Props {
+  headline: string;
+  body?: string;
+  primary: { href: string; label: string };
+  secondary?: { href: string; label: string };
+}
+const { headline, body, primary, secondary } = Astro.props;
+---
+
+<section class="bg-(--color-mines-blue) text-white">
+  <div class="mx-auto max-w-(--container-content) px-6 py-16 text-center">
+    <h2 class="text-2xl md:text-4xl font-bold">{headline}</h2>
+    {body && <p class="mx-auto mt-4 max-w-2xl text-(--color-mines-light-blue)">{body}</p>}
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a
+        href={primary.href}
+        class="inline-flex items-center rounded bg-(--color-mines-red) px-6 py-3 text-base font-bold text-white hover:bg-(--color-mines-red)/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        {primary.label}
+      </a>
+      {secondary && (
+        <a
+          href={secondary.href}
+          class="inline-flex items-center rounded border border-white px-6 py-3 text-base font-bold text-white hover:bg-white hover:text-(--color-mines-blue) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {secondary.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>
