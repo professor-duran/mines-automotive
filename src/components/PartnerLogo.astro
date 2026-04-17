@@ -1,0 +1,21 @@
+---
+export interface Props {
+  name: string;
+  logo?: string;
+  website?: string;
+}
+const { name, logo, website } = Astro.props;
+const inner = logo
+  ? `<img src="${logo}" alt="${name} logo" class="max-h-16 w-auto grayscale transition hover:grayscale-0" loading="lazy" />`
+  : `<span class="text-sm font-semibold text-(--color-caption)">${name}</span>`;
+---
+
+{website ? (
+  <a href={website} target="_blank" rel="noopener" class="flex items-center justify-center p-4 rounded border border-(--color-mines-pale-blue) bg-white">
+    <Fragment set:html={inner} />
+  </a>
+) : (
+  <div class="flex items-center justify-center p-4 rounded border border-(--color-mines-pale-blue) bg-white">
+    <Fragment set:html={inner} />
+  </div>
+)}

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const partners = (await getCollection('partners'))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+
+<section class="bg-(--color-mines-blue)">
+  <div class="mx-auto max-w-(--container-content) px-6 py-14 text-center">
+    <h2 class="text-sm font-bold uppercase tracking-widest text-(--color-mines-light-blue)">
+      Industry and national lab partners
+    </h2>
+    <p class="mt-4 mx-auto max-w-2xl text-white">
+      Mines Automotive works with OEMs, Tier 1 suppliers, and DOE national laboratories. Named partner list coming soon.
+    </p>
+    <a
+      href={`${base}/partners/`}
+      class="mt-6 inline-flex items-center text-sm font-bold text-white underline decoration-(--color-mines-red) underline-offset-8 hover:text-(--color-mines-red)"
+    >
+      Learn about partnership →
+    </a>
+  </div>
+</section>
