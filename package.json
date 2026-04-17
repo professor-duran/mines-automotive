@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "export": "npm run build && tsx scripts/export-content.ts"
+    "export": "npm run build && tsx scripts/export-content.ts",
+    "export:bundle": "npm run export && tsx scripts/bundle-export.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
