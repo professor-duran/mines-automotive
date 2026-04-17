@@ -1,0 +1,92 @@
+---
+import { getCollection, type CollectionEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', p => !p.data.draft);
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post }
+  }));
+}
+
+interface Props { post: CollectionEntry<'news'> }
+const { post } = Astro.props;
+const { Content } = await render(post);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+const pubDateFormatted = dateFmt.format(post.data.pubDate);
+const updatedFormatted = post.data.updatedDate ? dateFmt.format(post.data.updatedDate) : null;
+
+const categoryLabel: Record<string, string> = {
+  'news': 'News',
+  'event': 'Event',
+  'student-spotlight': 'Student spotlight'
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  heroImage={post.data.heroImage}
+  canonicalPath={`/news/${post.id.replace(/\.md$/, '')}/`}
+  pageType="article"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+
+  <PageHeader
+    title={post.data.title}
+    lead={post.data.description}
+    breadcrumb={[
+      { label: 'Home', href: `${base}/` },
+      { label: 'News', href: `${base}/news/` },
+      { label: post.data.title }
+    ]}
+  />
+
+  <section class="mx-auto max-w-3xl px-6 pt-10">
+    <div class="flex flex-wrap items-center gap-3 text-sm text-(--color-caption)">
+      <span class="inline-flex items-center rounded bg-(--color-mines-pale-blue) px-2 py-1 text-xs font-semibold uppercase tracking-wider text-(--color-mines-blue)">
+        {categoryLabel[post.data.category] ?? post.data.category}
+      </span>
+      <time datetime={post.data.pubDate.toISOString()}>{pubDateFormatted}</time>
+      {updatedFormatted && (
+        <span>Updated {updatedFormatted}</span>
+      )}
+    </div>
+    {post.data.tags.length > 0 && (
+      <ul class="mt-3 flex flex-wrap gap-2" role="list">
+        {post.data.tags.map(tag => (
+          <li class="rounded border border-(--color-mines-pale-blue) px-2 py-0.5 text-xs text-(--color-body)">{tag}</li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  {post.data.heroImage && (
+    <div class="mx-auto max-w-(--container-bleed) px-6 mt-8">
+      <img src={post.data.heroImage} alt={post.data.title} class="w-full aspect-[21/9] object-cover rounded" loading="lazy" />
+    </div>
+  )}
+
+  <section class="mx-auto max-w-3xl px-6 py-16 prose prose-lg prose-headings:font-bold prose-headings:text-(--color-mines-blue) prose-a:text-(--color-mines-red)">
+    <Content />
+  </section>
+
+  <CTASection
+    headline="More from the program"
+    primary={{ href: `${base}/news/`, label: 'All news' }}
+    secondary={{ href: `${base}/contact/`, label: 'Contact us' }}
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
