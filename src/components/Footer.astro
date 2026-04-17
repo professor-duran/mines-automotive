@@ -1,0 +1,77 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+
+const programLinks = [
+  { href: `${base}/about/`, label: 'About the program' },
+  { href: `${base}/curriculum/`, label: 'Curriculum' },
+  { href: `${base}/teams/`, label: 'Competition teams' },
+  { href: `${base}/partners/`, label: 'Industry partners' }
+];
+
+const resourceLinks = [
+  { href: `${base}/courses/`, label: 'Course catalog' },
+  { href: `${base}/faculty/`, label: 'Faculty' },
+  { href: `${base}/research/`, label: 'Research' },
+  { href: `${base}/students/`, label: 'Student spotlight' },
+  { href: `${base}/news/`, label: 'News and events' }
+];
+
+const institutionalLinks = [
+  { href: 'https://www.mines.edu/', label: 'Colorado School of Mines' },
+  { href: 'https://www.mines.edu/mechanical-engineering/', label: 'Department of Mechanical Engineering' },
+  { href: 'https://www.mines.edu/accessibility/', label: 'Accessibility' },
+  { href: 'https://www.mines.edu/privacy/', label: 'Privacy' }
+];
+---
+
+<footer class="bg-(--color-mines-blue) text-white">
+  <div class="mx-auto max-w-(--container-bleed) px-6 py-16">
+    <div class="grid gap-12 md:grid-cols-3">
+      <div>
+        <h2 class="text-lg font-bold uppercase tracking-wider">Automotive Engineering</h2>
+        <p class="mt-3 text-sm leading-relaxed text-(--color-mines-light-blue)">
+          Colorado School of Mines<br />
+          1500 Illinois Street<br />
+          Golden, CO 80401
+        </p>
+        <p class="mt-3 text-sm">
+          <a href="mailto:automotive@mines.edu" class="underline decoration-(--color-mines-red) underline-offset-4 hover:text-(--color-mines-red)">automotive@mines.edu</a>
+        </p>
+      </div>
+
+      <nav aria-label="Program">
+        <h2 class="text-sm font-bold uppercase tracking-wider">Program</h2>
+        <ul class="mt-3 space-y-2 text-sm" role="list">
+          {programLinks.map(link => (
+            <li><a href={link.href} class="hover:text-(--color-mines-red)">{link.label}</a></li>
+          ))}
+        </ul>
+        <h2 class="mt-6 text-sm font-bold uppercase tracking-wider">Resources</h2>
+        <ul class="mt-3 space-y-2 text-sm" role="list">
+          {resourceLinks.map(link => (
+            <li><a href={link.href} class="hover:text-(--color-mines-red)">{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav aria-label="Institutional">
+        <h2 class="text-sm font-bold uppercase tracking-wider">Mines</h2>
+        <ul class="mt-3 space-y-2 text-sm" role="list">
+          {institutionalLinks.map(link => (
+            <li>
+              <a href={link.href} class="hover:text-(--color-mines-red)" target="_blank" rel="noopener">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-(--color-mines-light-blue) md:flex-row md:justify-between">
+      <p>&copy; {year} Colorado School of Mines. All rights reserved.</p>
+      <p>Mockup site. Final site will be hosted at mines.edu.</p>
+    </div>
+  </div>
+</footer>
