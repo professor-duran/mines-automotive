@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The page you requested could not be found on the Mines Automotive Engineering site."
+  canonicalPath="/404/"
+>
+  <Nav slot="nav" currentPath={Astro.url.pathname} />
+  <section class="mx-auto max-w-(--container-content) px-6 py-20 text-center">
+    <span class="block h-1 w-16 bg-(--color-mines-red) mx-auto mb-6" aria-hidden="true"></span>
+    <h1 class="text-4xl md:text-6xl font-bold text-(--color-mines-blue)">Page not found</h1>
+    <p class="mt-4 text-lg text-(--color-caption)">We couldn't find what you were looking for.</p>
+    <a
+      href={`${base}/`}
+      class="mt-8 inline-flex items-center rounded bg-(--color-mines-red) px-6 py-3 font-bold text-white hover:bg-(--color-mines-red)/90"
+    >
+      Return home
+    </a>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>
