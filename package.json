@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
+    "@lhci/cli": "^0.15.1",
     "@types/archiver": "^7.0.0",
     "@types/jsdom": "^28.0.1",
     "@types/node": "^25.6.0",
