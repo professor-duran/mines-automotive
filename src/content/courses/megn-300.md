@@ -1,27 +1,26 @@
 ---
 code: "MEGN 300"
-name: "Automotive track elective (name TBD)"
+name: Instrumentation & Automation
 credits: 3
 crossList: []
-semesters: ["Spring"]
+semesters: ["Fall"]
 prerequisites: ["MEGN 200 or equivalent"]
 instructor: "Adam W. Duran"
-developedBy: "Adam W. Duran"
 openMaterialsUrl: "https://github.com/professor-duran/MEGN300"
 order: 3
 ---
 
 ## Overview
 
-A focused automotive-track elective taught by Adam W. Duran. The course title is being finalized. Topical emphasis is on applied vehicle engineering problems that extend the MEGN 200 and MEGN 301 foundation with hands-on analysis, labs, and case studies drawn from current industry practice.
+A core ME course taught by automotive track faculty. Data acquisition, analog and digital filtering, feedback controls, and instrumentation. Signal processing and sensor integration grounded in mechanical systems.
 
 ## Learning outcomes
 
-- Apply engineering methods to current automotive design problems.
-- Build and defend engineering decisions with data and modeling.
-- Communicate technical results clearly in written and oral form.
-- Work effectively in project teams on vehicle engineering tasks.
+- Design and calibrate measurement systems for mechanical signals.
+- Apply analog and digital filtering techniques to real instrumentation data.
+- Implement feedback control loops and analyze their response.
+- Integrate sensors, data acquisition hardware, and post-processing into a coherent pipeline.
 
 ## Open materials
 
-Lectures and problem sets are released under CC BY 4.0 at [github.com/professor-duran/MEGN300](https://github.com/professor-duran/MEGN300).
+Lectures, problem sets, and the full Master Reference Document are released under CC BY 4.0 at [github.com/professor-duran/MEGN300](https://github.com/professor-duran/MEGN300).

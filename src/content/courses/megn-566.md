@@ -1,23 +1,25 @@
 ---
 code: "MEGN 566"
-name: Advanced Automotive Topics
+name: Combustion
 credits: 3
 crossList: []
-semesters: ["Spring"]
-prerequisites: ["Graduate standing or MEGN 455"]
+semesters: ["Online / asynchronous"]
+prerequisites: ["Graduate standing"]
+instructor: "Adam W. Duran"
+developedBy: "Adam W. Duran"
 order: 7
 ---
 
 ## Overview
 
-Graduate-level seminar covering current research and advanced industry topics in automotive engineering. Content rotates by semester and may include advanced battery systems, vehicle controls, autonomy, and propulsion research. Students engage with current literature and lead structured discussions.
+An online graduate elective on combustion fundamentals, flame dynamics, and emissions. Iteratively redesigned across two offerings for asynchronous learners. Appears on the Mines automotive track elective slate (BSME+MSNT program).
 
 ## Learning outcomes
 
-- Critically read and synthesize current automotive engineering research.
-- Lead technical discussions on advanced vehicle topics.
-- Produce a graduate-level project or literature synthesis.
-- Situate research contributions within the broader industry context.
+- Apply the fundamentals of combustion to reacting-flow problems.
+- Analyze flame structure, stability, and propagation across regimes.
+- Evaluate emissions pathways and their controls in combustion devices.
+- Communicate combustion engineering results through technical writing.
 
 ## Materials in development
 

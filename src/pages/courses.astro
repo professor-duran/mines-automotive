@@ -15,14 +15,14 @@ const courses = (await getCollection('courses')).sort(
 
 <BaseLayout
   title="Courses"
-  description="The full catalog of automotive engineering track courses at Colorado School of Mines. Eight courses across mechanical engineering, economics and business, spanning undergraduate and graduate levels."
+  description="The full catalog of automotive engineering track courses at Colorado School of Mines. Required track courses plus curated electives, spanning undergraduate and graduate levels."
   canonicalPath="/courses/"
 >
   <Nav slot="nav" currentPath={Astro.url.pathname} />
 
   <PageHeader
     title="Course catalog"
-    lead="Eight courses across three departments. Click any course for prerequisites, semesters offered, and open materials."
+    lead="Required track courses plus curated electives and ME core courses taught by track faculty. Click any course for prerequisites, semesters offered, and open materials."
     breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Courses' }]}
   />
 
@@ -30,7 +30,7 @@ const courses = (await getCollection('courses')).sort(
     <div class="mx-auto max-w-(--container-content) px-6 py-12 md:py-16">
       <div class="max-w-3xl text-lg text-(--color-body)">
         <p>
-          The automotive engineering track spans introductory vehicle systems through graduate-level connected and automated vehicles. Every technical course is backed by openly licensed materials released under CC BY 4.0 on GitHub.
+          The automotive engineering track is anchored by two required courses (MEGN 391 Introduction to Automotive Design and MEGN 417/527 Vehicle Dynamics), plus a curated elective slate for focus areas: vibrations, controls, electric vehicle powertrains, fuel cells, combustion, aerodynamics, and CFD. Core ME and supplementary courses taught by track faculty are also listed here, with open materials released under CC BY 4.0 on GitHub where available.
         </p>
       </div>
     </div>

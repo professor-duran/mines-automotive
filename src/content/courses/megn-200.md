@@ -1,6 +1,6 @@
 ---
 code: "MEGN 200"
-name: Introduction to Automotive Engineering
+name: "Intro to ME: Programming & Hardware Interface"
 credits: 3
 crossList: []
 semesters: ["Fall", "Spring"]
@@ -11,14 +11,14 @@ order: 1
 
 ## Overview
 
-A foundational survey of modern automotive engineering for declared automotive-track students. Introduces vehicle systems, terminology, and the engineering workflow used across later track courses. Topics include vehicle dynamics fundamentals, propulsion options, safety systems, manufacturing, and the role of software in current vehicles.
+A core ME intro course taught by automotive track faculty. Introductory programming in C with hands-on hardware troubleshooting for mechanical engineers. Covers low-level embedded systems work, sensor integration, and the diagnostic skills that bridge code and physical systems. Students leave the course able to read, write, and debug small C programs on microcontroller-class hardware.
 
 ## Learning outcomes
 
-- Identify the major subsystems of a modern vehicle and how they interact.
-- Apply basic engineering analysis to vehicle performance problems.
-- Read and interpret common automotive specifications and test reports.
-- Articulate the engineering tradeoffs between performance, efficiency, cost, and safety.
+- Read and write small C programs that run on microcontroller-class hardware.
+- Debug code and circuits together using a structured, evidence-based process.
+- Wire and read common sensors, then act on sensor data in code.
+- Communicate technical decisions in writing and at the whiteboard.
 
 ## Materials in development
 

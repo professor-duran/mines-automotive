@@ -9,6 +9,15 @@ heroAlt: Mines Shell Eco-marathon team at Indianapolis Motor Speedway Gasoline A
 thumbnail: /images/shell-ecomarathon-indy.jpg
 order: 2
 gallery:
+  - src: /images/shell-eco-kitchen-build.jpg
+    alt: Shell Eco-marathon team building the prototype body shell in the shop
+    caption: Body shell fabrication at Mines
+  - src: /images/shell-eco-passed-tech.jpg
+    alt: Shell Eco-marathon team celebrating after passing technical inspection
+    caption: Passing technical inspection
+  - src: /images/shell-eco-indy-pagoda.jpg
+    alt: Shell Eco-marathon team at the Indianapolis Motor Speedway pagoda
+    caption: At the IMS pagoda during Shell Eco-marathon Americas
   - src: /images/shell-ecomarathon-garage.jpg
     alt: Shell Eco-marathon team assembling their vehicle in the paddock garage
     caption: Paddock preparation at Indianapolis Motor Speedway

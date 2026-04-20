@@ -1,23 +1,25 @@
 ---
 code: "MEGN 455"
-name: Electric and Hybrid Vehicle Systems
+name: Aerospace Systems Engineering
 credits: 3
 crossList: []
-semesters: ["Spring"]
-prerequisites: ["MEGN 301"]
+semesters: ["Fall"]
+prerequisites: []
+instructor: "Adam W. Duran"
+developedBy: "Adam W. Duran"
 order: 5
 ---
 
 ## Overview
 
-In-depth treatment of battery electric and hybrid electric vehicle systems, covering energy storage, power electronics, electric machines, thermal management, and vehicle-level energy modeling. Emphasis on connecting component behavior to full-vehicle efficiency and range.
+Systems engineering methodology applied to aerospace vehicle design. The semester project uses an SBIR Phase I-inspired white paper format that mirrors federal proposal practice, so students exit the course having written to a real federal audience. Taught by automotive track faculty; included here because the systems engineering, proposal writing, and requirements-definition skills transfer directly to vehicle programs.
 
 ## Learning outcomes
 
-- Model battery electric and hybrid powertrains at the vehicle level.
-- Size energy storage and traction drives for a target use case.
-- Analyze thermal management requirements across the pack and drive unit.
-- Evaluate real-world range, efficiency, and charging tradeoffs.
+- Apply systems engineering methodology to a vehicle-scale design problem.
+- Translate use cases into verifiable requirements.
+- Conduct structured trade studies and defend architectural decisions.
+- Produce a federal-proposal-grade technical white paper.
 
 ## Materials in development
 

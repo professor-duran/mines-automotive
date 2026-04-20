@@ -1,23 +1,25 @@
 ---
 code: "MEGN 456"
-name: Autonomous Vehicle Systems
+name: Space Operations & Mission Design
 credits: 3
 crossList: []
-semesters: ["Fall"]
-prerequisites: ["MEGN 301"]
+semesters: ["Spring"]
+prerequisites: []
+instructor: "Adam W. Duran"
+developedBy: "Adam W. Duran"
 order: 6
 ---
 
 ## Overview
 
-Introduction to the engineering of connected and automated vehicles. Covers sensor suites, perception, localization, planning, vehicle control, and the system-level design challenges of deploying driver-assistance and automated driving features.
+Semester-long NASA RFP-inspired mission design project covering orbital mechanics, sensor trade studies, and full systems engineering documentation. Taught by automotive track faculty; included here because the mission architecting, trade-study, and requirements-flow-down skills translate directly to complex vehicle programs.
 
 ## Learning outcomes
 
-- Explain the sensor, compute, and software stack of a modern automated vehicle.
-- Analyze control loops for longitudinal and lateral vehicle control.
-- Evaluate safety cases for driver-assistance and automated driving functions.
-- Critique published automated driving architectures and their tradeoffs.
+- Execute a full mission architecture study from objectives through operations.
+- Apply orbital mechanics and sensor trade analysis to realistic mission scenarios.
+- Flow mission-level requirements down to subsystem specifications.
+- Produce federal-RFP-grade mission design documentation.
 
 ## Materials in development
 

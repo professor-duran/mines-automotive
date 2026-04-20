@@ -17,54 +17,54 @@ const previewCourses = allCourses.slice(0, 6);
 
 <BaseLayout
   title="Curriculum"
-  description="Eight new courses across three departments built around three pillars: technical depth, hands-on experience, and industry connection."
+  description="Required track courses, curated electives for focus areas, and a hands-on competition-team ecosystem, organized around three pillars: technical depth, hands-on experience, and industry connection."
   canonicalPath="/curriculum/"
 >
   <Nav slot="nav" currentPath={Astro.url.pathname} />
 
   <PageHeader
     title="Curriculum"
-    lead="Eight courses across three departments, organized around three pillars."
+    lead="Two required track courses, curated focus-area electives, and experiential coursework, organized around three pillars."
     breadcrumb={[{ label: 'Home', href: `${base}/` }, { label: 'Curriculum' }]}
   />
 
   <PhotoTextRow
-    image={`${base}/images/fsae-tilt-test.jpg`}
-    alt="Mines Formula SAE vehicle during tilt test inspection"
+    image={`${base}/images/capstone-simulator.jpg`}
+    alt="Students operating the multiaxis driving simulator built for MEGN 417/527 Vehicle Dynamics"
     heading="Technical depth"
   >
     <p>
-      The core sequence builds a vehicle engineer from the ground up. MEGN 200 introduces vehicle systems and the automotive engineering workflow. MEGN 301 covers conventional, hybrid, and electric powertrains. MEGN 417 extends that into full vehicle systems design, with MEGN 566 layering graduate-level analysis of connected and automated vehicles.
+      The track is anchored by two required courses. <strong>MEGN 391 Introduction to Automotive Design</strong> rebuilds design-build-test fundamentals around student-built RC cars. <strong>MEGN 417/527 Vehicle Dynamics</strong> covers suspension, tire, and powertrain dynamics through calculation, simulation, and experimentation, with an integrated electric go-kart platform and a multiaxis driving simulator as the verification bench.
     </p>
     <p>
-      Every technical course is backed by open materials. Lecture notes, problem sets, and references for MEGN 200, 300, 301, and Capstone are released under CC BY 4.0 on GitHub.
+      Students then select from a curated elective slate to specialize toward a focus area: vibrations, controls, electric vehicle powertrains, fuel cells, combustion, aerodynamics, or CFD. Track faculty also teach core ME courses (MEGN 200 Intro to ME, MEGN 300 Instrumentation, MEGN 301 Mechanical Integration) whose open materials are released under CC BY 4.0 on GitHub.
     </p>
   </PhotoTextRow>
 
   <PhotoTextRow
-    image={`${base}/images/shell-ecomarathon-garage.jpg`}
-    alt="Mines Shell Eco-marathon team working in the garage"
+    image={`${base}/images/bwc-workshop.jpg`}
+    alt="Mines and ACC Battery Workforce Challenge team at work in the shop"
     reverse={true}
     heading="Hands-on experience"
   >
     <p>
-      Coursework is paired with lab-heavy project work from the first year forward. MEGN 200 students tear down and reassemble subsystems. MEGN 300 and 301 use the Battery Workforce Challenge and EcoCAR vehicles as live engineering platforms. Capstone teams deliver instrumented hardware to industry sponsors.
+      Coursework is paired with lab-heavy project work from the first year forward. MEGN 200 students learn embedded C and hardware debugging. MEGN 301 teams translate thermodynamics and mechanics of materials into working prototypes. Capstone teams deliver instrumented hardware to industry sponsors.
     </p>
     <p>
-      The four flagship competition teams, FSAE, Shell Eco-marathon, Battery Workforce Challenge, and EcoCAR, anchor the experiential side. Students build, test, and race the vehicles they analyze in class.
+      Four flagship competition teams anchor the experiential side: FSAE, Shell Eco-marathon, the Battery Workforce Challenge, and EcoCAR. Students build, test, and race the vehicles they analyze in class.
     </p>
   </PhotoTextRow>
 
   <PhotoTextRow
-    image={`${base}/images/rc-car-workshop.jpg`}
-    alt="Students working on a small-scale vehicle in the RC workshop"
+    image={`${base}/images/capstone-automotive-projects.jpg`}
+    alt="Capstone automotive projects on display"
     heading="Industry connection"
   >
     <p>
-      MEGN 455 and 456 use SBIR and NASA RFP formats as their semester deliverables. EBGN 599A brings technology commercialization into the automotive context. Students graduate having written the same kinds of documents they will be asked to produce on the job.
+      Industry partnerships with Stellantis, NREL, and other OEMs, Tier 1 suppliers, and national lab collaborators keep course content current and feed directly into capstone projects, internships, and graduate placement. Competition programs like EcoCAR and the Battery Workforce Challenge connect students to real OEM engineering teams.
     </p>
     <p>
-      Program partnerships with Stellantis, NREL, and other industry and national lab collaborators keep course content current and feed directly into capstone projects, internships, and graduate placement.
+      Federal-facing courses taught by program faculty (MEGN 455 Aerospace Systems Engineering, MEGN 456 Space Operations and Mission Design) sharpen requirements-writing, trade-study, and proposal skills that transfer directly to vehicle programs.
     </p>
   </PhotoTextRow>
 

@@ -3,7 +3,7 @@ title: "Mines Battery Workforce Challenge team finishes 4th in Year 2"
 description: "Second straight competitive finish for the DOE-sponsored battery redesign program."
 pubDate: 2025-11-15
 tags: [bwc, awards]
-heroImage: /images/bwc-team-stellantis.jpg
+heroImage: /images/bwc-workshop.jpg
 category: news
 ---
 

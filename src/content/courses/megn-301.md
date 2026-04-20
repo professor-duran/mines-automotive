@@ -1,26 +1,26 @@
 ---
 code: "MEGN 301"
-name: Automotive Powertrains
+name: Mechanical Integration & Design
 credits: 3
 crossList: []
-semesters: ["Fall"]
+semesters: ["Spring"]
 prerequisites: ["MEGN 200 or equivalent"]
 instructor: "Adam W. Duran"
 developedBy: "Adam W. Duran"
 openMaterialsUrl: "https://github.com/professor-duran/MEGN301"
-order: 2
+order: 4
 ---
 
 ## Overview
 
-An applied introduction to automotive powertrain architectures: internal combustion engines, transmissions, hybrid and battery electric drivetrains, fuel cells, and power delivery systems. Emphasis on system-level tradeoffs and real-world vehicle performance.
+A core ME course taught by automotive track faculty. Mechanical-electrical integration for design. Teams translate subsystem concepts into working prototypes, pairing thermodynamics, fluids, and mechanics of materials with sensors and actuators in hands-on builds.
 
 ## Learning outcomes
 
-- Analyze and compare conventional, hybrid, and electric powertrain architectures.
-- Select and size powertrain components for target vehicle use cases.
-- Interpret manufacturer data sheets and translate them into engineering models.
-- Evaluate powertrain design decisions against efficiency, cost, and packaging constraints.
+- Integrate mechanical, electrical, and sensing subsystems in a cohesive design.
+- Apply thermodynamics, fluids, and mechanics of materials to real build decisions.
+- Specify, select, and wire sensors and actuators for a working prototype.
+- Document design, build, and verification decisions against stated requirements.
 
 ## Open materials
 

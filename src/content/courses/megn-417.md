@@ -1,24 +1,22 @@
 ---
-code: "MEGN 417"
-name: Vehicle Systems Design
+code: "MEGN 417/527"
+name: Vehicle Dynamics
 credits: 3
-crossList: []
+crossList: ["MEGN 527"]
 semesters: ["Fall"]
-prerequisites: ["MEGN 301"]
-order: 4
+prerequisites: ["MEGN 391"]
+instructor: "Adam W. Duran"
+developedBy: "Adam W. Duran"
+order: 2
 ---
 
 ## Overview
 
-System-level design of modern vehicles with an emphasis on integration across mechanical, electrical, and software subsystems. Students work through architecture selection, requirements definition, and verification planning on a vehicle-scale design problem.
+One of the two required courses for the Mines automotive engineering track. Advanced vehicle systems analysis covering suspension, tire, and powertrain dynamics through calculation, simulation, and experimentation. The course is built around an integrated electric go-kart platform and a multiaxis driving simulator, so that suspension, tire, and powertrain theory is verified on a vehicle students can instrument and tune.
 
 ## Learning outcomes
 
-- Translate vehicle use cases into quantitative system requirements.
-- Compare architectural options using structured tradeoff analysis.
-- Develop interface definitions between vehicle subsystems.
-- Plan verification and validation activities for a vehicle program.
-
-## Materials in development
-
-Open course materials are in development.
+- Model vehicle dynamic response from first principles and validate against measurement.
+- Analyze suspension geometry, tire behavior, and powertrain loading under realistic operating conditions.
+- Run and interpret simulation studies of handling, ride, and longitudinal performance.
+- Execute experimental vehicle dynamics procedures and reconcile results with model predictions.
